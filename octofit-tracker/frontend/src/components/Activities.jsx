@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react'
-import { fetchCollection, formatDate } from '../api.js'
+import { apiBaseUrl, fetchCollection, formatDate } from '../api.js'
 
 function Activities() {
   const [activities, setActivities] = useState([])
   const [error, setError] = useState('')
-  const endpoint = '/api/activities/'
+  const endpoint = import.meta.env.VITE_CODESPACE_NAME
+    ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities/`
+    : `${apiBaseUrl}/api/activities/`
 
   useEffect(() => {
     fetchCollection(endpoint).then(setActivities).catch((reason) => setError(reason.message))
-  }, [])
+  }, [endpoint])
 
   return (
     <section>
