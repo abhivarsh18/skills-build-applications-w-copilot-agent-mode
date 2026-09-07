@@ -16,7 +16,7 @@ app.get('/api/health', (_request, response) => {
 
   response.json({ status: 'ok', apiBaseUrl: baseUrl });
 });
-
+ 
 app.use((error: unknown, _request: express.Request, response: express.Response, _next: express.NextFunction) => {
   console.error(error);
   response.status(400).json({ error: 'Request could not be processed' });
