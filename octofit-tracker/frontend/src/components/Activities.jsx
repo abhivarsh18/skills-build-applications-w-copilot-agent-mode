@@ -4,9 +4,10 @@ import { fetchCollection, formatDate } from '../api.js'
 function Activities() {
   const [activities, setActivities] = useState([])
   const [error, setError] = useState('')
+  const endpoint = '/api/activities/'
 
   useEffect(() => {
-    fetchCollection('activities').then(setActivities).catch((reason) => setError(reason.message))
+    fetchCollection(endpoint).then(setActivities).catch((reason) => setError(reason.message))
   }, [])
 
   return (
